@@ -1,0 +1,1 @@
+export const CARDIO_RECORD = "CARDIO_RECORD";
