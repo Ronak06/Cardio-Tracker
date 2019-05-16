@@ -7,11 +7,13 @@ import CardioEdit from "./caridoLogs/CardioEdit";
 import CardioDelete from "./caridoLogs/CardioDelete";
 import CardioList from "./caridoLogs/CardioList";
 import CardioShow from "./caridoLogs/CardioShow";
+import Header from "./Header";
 
 const App = () => {
   return (
-    <div>
+    <div className="ui container">
       <BrowserRouter>
+        <Header />
         <Route path="/" exact component={CardioList} />
         <Route path="/cardioLogs/new" exact component={CardioCreate} />
         <Route path="/cardioLogs/edit" exact component={CardioEdit} />
