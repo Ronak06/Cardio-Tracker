@@ -1,5 +1,9 @@
+// import dependencies
 import React from "react";
 import { Link } from "react-router-dom";
+
+// import files
+import GoogleAuth from "./GoogleAuth";
 
 const Header = () => {
   return (
@@ -11,6 +15,7 @@ const Header = () => {
         <Link to="/" className="item">
           All Cardio Logs
         </Link>
+        <GoogleAuth />
       </div>
     </div>
   );
