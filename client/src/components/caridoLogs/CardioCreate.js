@@ -2,23 +2,37 @@ import React from "react";
 import { Field, reduxForm } from "redux-form";
 
 class CardioCreate extends React.Component {
-  renderInput({ input, label, type }) {
-    return (
-      <div className="field">
-        <label>{label}</label>
-        <input {...input} type={type} />
-      </div>
-    );
+  renderError({ error, touched }) {
+    if (touched && error) {
+      return (
+        <div className="ui error message">
+          <div className="header">{error}</div>
+        </div>
+      );
+    }
   }
 
-  renderInputDistance({ input, label, type, step }) {
+  renderInput = ({ input, label, type, meta }) => {
+    const className = `field ${meta.error && meta.touched ? "error" : ""}`;
     return (
-      <div className="field">
+      <div className={className}>
         <label>{label}</label>
-        <input {...input} type={type} step={step} />
+        <input {...input} type={type} />
+        {this.renderError(meta)}
       </div>
     );
-  }
+  };
+
+  renderInputDistance = ({ input, label, type, step, meta }) => {
+    const className = `field ${meta.error && meta.touched ? "error" : ""}`;
+    return (
+      <div className={className}>
+        <label>{label}</label>
+        <input {...input} type={type} step={step} />
+        {this.renderError(meta)}
+      </div>
+    );
+  };
 
   onSubmit(formValues) {
     console.log(formValues);
@@ -27,7 +41,7 @@ class CardioCreate extends React.Component {
   render() {
     return (
       <form
-        className="ui form"
+        className="ui form error"
         onSubmit={this.props.handleSubmit(this.onSubmit)}
       >
         <Field
@@ -61,4 +75,30 @@ class CardioCreate extends React.Component {
   }
 }
 
-export default reduxForm({ form: "cardioCreate" })(CardioCreate);
+const validate = formValues => {
+  const errors = {};
+
+  if (!formValues.name) {
+    errors.name = "Please enter a name.";
+  } else if (!/^[a-zA-Z ]+$/.test(formValues.name)) {
+    errors.name = "Please enter a valid name.";
+  }
+
+  if (!formValues.date) {
+    errors.date = "Please select a date.";
+  }
+
+  if (!formValues.distance) {
+    errors.distance = "Please select a distance.";
+  }
+
+  if (!formValues.time) {
+    errors.time = "Please enter a time.";
+  } else if (!/^[0-9][0-9]:[0-9][0-9]$/.test(formValues.time)) {
+    errors.time = "Please enter a valid time.";
+  }
+
+  return errors;
+};
+
+export default reduxForm({ form: "cardioCreate", validate })(CardioCreate);
