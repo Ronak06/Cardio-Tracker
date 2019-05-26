@@ -75,6 +75,7 @@ class CardioCreate extends React.Component {
   }
 }
 
+// Validation for new cardio log form
 const validate = formValues => {
   const errors = {};
 
