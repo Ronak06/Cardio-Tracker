@@ -1,5 +1,7 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
+import { connect } from "react-redux";
+import { createCardioLog } from "../../actions";
 
 class CardioCreate extends React.Component {
   renderError({ error, touched }) {
@@ -34,9 +36,9 @@ class CardioCreate extends React.Component {
     );
   };
 
-  onSubmit(formValues) {
-    console.log(formValues);
-  }
+  onSubmit = formValues => {
+    this.props.createCardioLog(formValues);
+  };
 
   render() {
     return (
@@ -102,4 +104,9 @@ const validate = formValues => {
   return errors;
 };
 
-export default reduxForm({ form: "cardioCreate", validate })(CardioCreate);
+const formWrapped = reduxForm({ form: "cardioCreate", validate })(CardioCreate);
+
+export default connect(
+  null,
+  { createCardioLog }
+)(formWrapped);
