@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { createCardioLog } from "../../actions";
 
 class CardioCreate extends React.Component {
+  // Renders errors on form
   renderError({ error, touched }) {
     if (touched && error) {
       return (
@@ -14,6 +15,7 @@ class CardioCreate extends React.Component {
     }
   }
 
+  // Renders fields on the form but distance field
   renderInput = ({ input, label, type, meta }) => {
     const className = `field ${meta.error && meta.touched ? "error" : ""}`;
     return (
@@ -25,6 +27,7 @@ class CardioCreate extends React.Component {
     );
   };
 
+  // Renders the Distance field on the form
   renderInputDistance = ({ input, label, type, step, meta }) => {
     const className = `field ${meta.error && meta.touched ? "error" : ""}`;
     return (
@@ -36,6 +39,7 @@ class CardioCreate extends React.Component {
     );
   };
 
+  // When user submits the form, it creates the log in the db
   onSubmit = formValues => {
     this.props.createCardioLog(formValues);
   };
