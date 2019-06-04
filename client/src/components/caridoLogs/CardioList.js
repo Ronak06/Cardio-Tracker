@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { fetchCardioLogs } from "../../actions";
-import { Stream } from "stream";
 
 class CardioList extends React.Component {
   componentDidMount() {
@@ -43,11 +43,26 @@ class CardioList extends React.Component {
     });
   }
 
+  // function renderCreate, renders a Link tag to be placed on the CardioList page
+  // to allow users to directly go to the cardioCreate component
+  renderCreate() {
+    if (this.props.isSignedIn) {
+      return (
+        <div style={{ textAlign: "right" }}>
+          <Link to="/cardioLogs/new" className="ui button primary">
+            Create Cardio Log
+          </Link>
+        </div>
+      );
+    }
+  }
+
   render() {
     return (
       <div>
         <h2>Cardio Logs</h2>
         <div className="ui celled list">{this.renderList()}</div>
+        {this.renderCreate()}
       </div>
     );
   }
@@ -56,7 +71,8 @@ class CardioList extends React.Component {
 const mapStateToProps = state => {
   return {
     cardioLogs: Object.values(state.cardiologs),
-    currentUserId: state.auth.userId
+    currentUserId: state.auth.userId,
+    isSignedIn: state.auth.isSignedIn
   };
 };
 

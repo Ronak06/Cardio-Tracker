@@ -34,6 +34,7 @@ export const createCardioLog = formValues => async (dispatch, getState) => {
   });
 
   dispatch({ type: CREATE_CARDIOLOG, payload: response.data });
+  // Do programmatic navigation to get user back to route page
 };
 
 // Action creator to fetch a list of all the cardio logs
