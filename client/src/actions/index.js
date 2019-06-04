@@ -26,8 +26,12 @@ export const signOut = () => {
 };
 
 // Action creator to create a new cardio log with the values filled in from the form
-export const createCardioLog = formValues => async dispatch => {
-  const response = await cardiologs.post("/cardiologs", formValues);
+export const createCardioLog = formValues => async (dispatch, getState) => {
+  const { userId } = getState().auth;
+  const response = await cardiologs.post("/cardiologs", {
+    ...formValues,
+    userId
+  });
 
   dispatch({ type: CREATE_CARDIOLOG, payload: response.data });
 };
