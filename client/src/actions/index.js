@@ -56,9 +56,10 @@ export const fetchCardioLog = id => async dispatch => {
 
 // Action creator to edit a specific cardio log based on the ID and form values provided
 export const editCardioLog = (id, formValues) => async dispatch => {
-  const response = await cardiologs.put(`/cardiologs/${id}`, formValues);
+  const response = await cardiologs.patch(`/cardiologs/${id}`, formValues);
 
   dispatch({ type: EDIT_CARDIOLOG, payload: response.data });
+  history.push("/");
 };
 
 // Action creator to delete a specific cardio log based on the ID provided
