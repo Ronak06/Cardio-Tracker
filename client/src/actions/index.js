@@ -1,5 +1,6 @@
 // imported api and action types
 import cardiologs from "../apis/cardiologs";
+import history from "../history";
 import {
   SIGN_IN,
   SIGN_OUT,
@@ -35,6 +36,8 @@ export const createCardioLog = formValues => async (dispatch, getState) => {
 
   dispatch({ type: CREATE_CARDIOLOG, payload: response.data });
   // Do programmatic navigation to get user back to route page
+  // push navigates user throughout app
+  history.push("/");
 };
 
 // Action creator to fetch a list of all the cardio logs
