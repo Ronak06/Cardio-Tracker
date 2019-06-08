@@ -18,7 +18,7 @@ const App = () => {
         <Header />
         <Route path="/" exact component={CardioList} />
         <Route path="/cardioLogs/new" exact component={CardioCreate} />
-        <Route path="/cardioLogs/edit" exact component={CardioEdit} />
+        <Route path="/cardioLogs/edit/:id" exact component={CardioEdit} />
         <Route path="/cardioLogs/delete" exact component={CardioDelete} />
         <Route path="/cardioLogs/show" exact component={CardioShow} />
       </Router>

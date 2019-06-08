@@ -14,7 +14,12 @@ class CardioList extends React.Component {
     if (cardioLog.userId === this.props.currentUserId) {
       return (
         <div className="right floated content">
-          <button className="ui button primary">Edit</button>
+          <Link
+            className="ui button primary"
+            to={`/cardiologs/edit/${cardioLog.id}`}
+          >
+            Edit
+          </Link>
           <button className="ui button negative">Delete</button>
         </div>
       );
