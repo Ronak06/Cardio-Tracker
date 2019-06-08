@@ -1,7 +1,7 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
 
-class CardioLogForm extends React.Component {
+class CardioForm extends React.Component {
   // Renders errors on form
   renderError({ error, touched }) {
     if (touched && error) {
@@ -106,4 +106,4 @@ const validate = formValues => {
   return errors;
 };
 
-export default reduxForm({ form: "cardioLogForm", validate })(CardioLogForm);
+export default reduxForm({ form: "cardioForm", validate })(CardioForm);
