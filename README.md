@@ -1,2 +1,12 @@
 # Cardio-Tracker
-Track my cardio progress throughout the year. Built with React on Front End and Nodejs Backend along with MongoDB.
+
+Cardio Tracker allows for a personal tracking application for a user's cardio logs. A user is able to sign in with Google to personally create cardio logs for tracking purposes. 
+
+The Cardio-Tracker application is built using React.js, Redux, Semantic-UI, and a local database.  
+
+In order to run the application on your own computer perform the following steps after git clone. 
+
+# Instructions to run
+1) cd Cardio-Tracker
+2) npm install 
+3) npm start
