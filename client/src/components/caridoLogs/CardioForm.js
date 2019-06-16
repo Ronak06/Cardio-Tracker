@@ -19,7 +19,7 @@ class CardioForm extends React.Component {
     return (
       <div className={className}>
         <label>{label}</label>
-        <input {...input} type={type} />
+        <input {...input} type={type} autoComplete="off" />
         {this.renderError(meta)}
       </div>
     );
@@ -31,7 +31,7 @@ class CardioForm extends React.Component {
     return (
       <div className={className}>
         <label>{label}</label>
-        <input {...input} type={type} step={step} />
+        <input {...input} type={type} step={step} autoComplete="off" />
         {this.renderError(meta)}
       </div>
     );
