@@ -20,7 +20,11 @@ class CardioList extends React.Component {
           >
             Edit
           </Link>
-          <button className="ui button negative">Delete</button>
+          <Link 
+            className="ui button negative" 
+            to={`/cardiologs/delete/${cardioLog.id}`}>
+              Delete
+          </Link>
         </div>
       );
     }
