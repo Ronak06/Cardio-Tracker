@@ -67,4 +67,5 @@ export const deleteCardioLog = id => async dispatch => {
   await cardiologs.delete(`/cardiologs/${id}`);
 
   dispatch({ type: DELETE_CARDIOLOG, payload: id });
+  history.push("/");
 };
