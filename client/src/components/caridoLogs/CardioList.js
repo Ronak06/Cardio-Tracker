@@ -20,10 +20,11 @@ class CardioList extends React.Component {
           >
             Edit
           </Link>
-          <Link 
-            className="ui button negative" 
-            to={`/cardiologs/delete/${cardioLog.id}`}>
-              Delete
+          <Link
+            className="ui button negative"
+            to={`/cardiologs/delete/${cardioLog.id}`}
+          >
+            Delete
           </Link>
         </div>
       );
@@ -38,7 +39,9 @@ class CardioList extends React.Component {
           {this.renderAdmin(cardioLog)}
           <i className="large middle aligned icon trophy" />
           <div className="content">
-            {cardioLog.name}
+            <Link to={`/cardiologs/${cardioLog.id}`} className="header">
+              {cardioLog.name}
+            </Link>
             <div className="description">
               Distance: {cardioLog.distance} miles
               <br />
@@ -58,7 +61,7 @@ class CardioList extends React.Component {
     if (this.props.isSignedIn) {
       return (
         <div style={{ textAlign: "right" }}>
-          <Link to="/cardioLogs/new" className="ui button primary">
+          <Link to="/cardiologs/new" className="ui button primary">
             Create Cardio Log
           </Link>
         </div>

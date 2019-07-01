@@ -1,6 +1,6 @@
 // importing dependencies
 import React from "react";
-import { Router, Route } from "react-router-dom";
+import { Router, Route, Switch } from "react-router-dom";
 
 // importing files
 import CardioCreate from "./caridoLogs/CardioCreate";
@@ -16,11 +16,13 @@ const App = () => {
     <div className="ui container">
       <Router history={history}>
         <Header />
-        <Route path="/" exact component={CardioList} />
-        <Route path="/cardioLogs/new" exact component={CardioCreate} />
-        <Route path="/cardioLogs/edit/:id" exact component={CardioEdit} />
-        <Route path="/cardioLogs/delete/:id" exact component={CardioDelete} />
-        <Route path="/cardioLogs/show" exact component={CardioShow} />
+        <Switch>
+          <Route path="/" exact component={CardioList} />
+          <Route path="/cardiologs/new" exact component={CardioCreate} />
+          <Route path="/cardiologs/edit/:id" exact component={CardioEdit} />
+          <Route path="/cardiologs/delete/:id" exact component={CardioDelete} />
+          <Route path="/cardiologs/:id" exact component={CardioShow} />
+        </Switch>
       </Router>
     </div>
   );
