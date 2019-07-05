@@ -4,14 +4,21 @@ import { Link } from "react-router-dom";
 import { fetchCardioLogs } from "../../actions";
 
 class CardioList extends React.Component {
+  state = {
+    url: "/cardiologs"
+  };
+
   componentDidMount() {
-    this.props.fetchCardioLogs();
+    this.props.fetchCardioLogs(this.state.url);
   }
 
   // function renderAdmin, renders the delete and edit buttons if
   // the currently logged in user is the same user that created a cardioLog
   renderAdmin(cardioLog) {
-    if (cardioLog.userId === this.props.currentUserId) {
+    if (
+      cardioLog.userId === this.props.currentUserId &&
+      cardioLog.userId !== null
+    ) {
       return (
         <div className="right floated content">
           <Link
@@ -33,7 +40,8 @@ class CardioList extends React.Component {
 
   // function renderList, renders the list of cardio logs using semantic-ui
   renderList() {
-    return this.props.cardioLogs.map(cardioLog => {
+    //console.log(this.props.cardiologs);
+    return this.props.cardiologs.map(cardioLog => {
       return (
         <div className="item" key={cardioLog.id}>
           {this.renderAdmin(cardioLog)}
@@ -69,10 +77,36 @@ class CardioList extends React.Component {
     }
   }
 
+  sortOnChange = () => {
+    let val = document.getElementById("sortType").value;
+
+    if (val === 0) {
+      this.props.fetchCardioLogs("/cardiologs?_sort=name&_order=desc");
+    } else if (val === 1) {
+      this.props.fetchCardioLogs("/cardiologs?_sort=time&_order=desc");
+    } else if (val === 2) {
+      this.props.fetchCardioLogs("/cardiologs?_sort=date&_order=desc");
+    } else {
+      return;
+    }
+  };
+
   render() {
     return (
       <div>
         <h2>Cardio Logs</h2>
+
+        <select
+          className="ui dropdown"
+          id="sortType"
+          onChange={this.sortOnChange}
+        >
+          <option value="5">Sort list by</option>
+          <option value="0">Name</option>
+          <option value="1">Time</option>
+          <option value="2">Date</option>
+        </select>
+
         <div className="ui celled list">{this.renderList()}</div>
         {this.renderCreate()}
       </div>
@@ -82,7 +116,7 @@ class CardioList extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    cardioLogs: Object.values(state.cardiologs),
+    cardiologs: Object.values(state.cardiologs),
     currentUserId: state.auth.userId,
     isSignedIn: state.auth.isSignedIn
   };

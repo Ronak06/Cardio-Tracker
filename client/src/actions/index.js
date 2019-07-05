@@ -41,8 +41,10 @@ export const createCardioLog = formValues => async (dispatch, getState) => {
 };
 
 // Action creator to fetch a list of all the cardio logs
-export const fetchCardioLogs = () => async dispatch => {
-  const response = await cardiologs.get("/cardiologs");
+export const fetchCardioLogs = url => async dispatch => {
+  const response = await cardiologs.get(`${url}`);
+
+  console.log(response.data);
 
   dispatch({ type: FETCH_CARDIOLOGS, payload: response.data });
 };

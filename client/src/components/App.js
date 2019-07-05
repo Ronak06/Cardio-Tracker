@@ -15,14 +15,20 @@ const App = () => {
   return (
     <div className="ui container">
       <Router history={history}>
-        <Header />
-        <Switch>
-          <Route path="/" exact component={CardioList} />
-          <Route path="/cardiologs/new" exact component={CardioCreate} />
-          <Route path="/cardiologs/edit/:id" exact component={CardioEdit} />
-          <Route path="/cardiologs/delete/:id" exact component={CardioDelete} />
-          <Route path="/cardiologs/:id" exact component={CardioShow} />
-        </Switch>
+        <div>
+          <Header />
+          <Switch>
+            <Route path="/" exact component={CardioList} />
+            <Route path="/cardiologs/new" exact component={CardioCreate} />
+            <Route path="/cardiologs/edit/:id" exact component={CardioEdit} />
+            <Route
+              path="/cardiologs/delete/:id"
+              exact
+              component={CardioDelete}
+            />
+            <Route path="/cardiologs/:id" exact component={CardioShow} />
+          </Switch>
+        </div>
       </Router>
     </div>
   );
