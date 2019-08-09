@@ -44,8 +44,6 @@ export const createCardioLog = formValues => async (dispatch, getState) => {
 export const fetchCardioLogs = url => async dispatch => {
   const response = await cardiologs.get(`${url}`);
 
-  console.log(response.data);
-
   dispatch({ type: FETCH_CARDIOLOGS, payload: response.data });
 };
 

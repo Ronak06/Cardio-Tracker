@@ -6,10 +6,12 @@ import { fetchCardioLogs } from "../../actions";
 class CardioList extends React.Component {
   state = {
     url: "/cardiologs"
+    //sortNum: 5
   };
 
   componentDidMount() {
     this.props.fetchCardioLogs(this.state.url);
+    //console.log(this.props);
   }
 
   // function renderAdmin, renders the delete and edit buttons if
@@ -80,12 +82,15 @@ class CardioList extends React.Component {
   sortOnChange = () => {
     let val = document.getElementById("sortType").value;
 
-    if (val === 0) {
+    if (val === "0") {
+      this.setState({ url: "/cardiologs?_sort=name&_order=desc" });
       this.props.fetchCardioLogs("/cardiologs?_sort=name&_order=desc");
-    } else if (val === 1) {
+    } else if (val === "1") {
+      this.setState({ url: "/cardiologs?_sort=name&_order=desc" });
       this.props.fetchCardioLogs("/cardiologs?_sort=time&_order=desc");
-    } else if (val === 2) {
-      this.props.fetchCardioLogs("/cardiologs?_sort=date&_order=desc");
+    } else if (val === "2") {
+      this.setState({ url: "/cardiologs?_sort=distance&_order=desc" });
+      this.props.fetchCardioLogs("/cardiologs?_sort=distance&_order=desc");
     } else {
       return;
     }
@@ -95,7 +100,6 @@ class CardioList extends React.Component {
     return (
       <div>
         <h2>Cardio Logs</h2>
-
         <select
           className="ui dropdown"
           id="sortType"
@@ -104,7 +108,7 @@ class CardioList extends React.Component {
           <option value="5">Sort list by</option>
           <option value="0">Name</option>
           <option value="1">Time</option>
-          <option value="2">Date</option>
+          <option value="2">Distance</option>
         </select>
 
         <div className="ui celled list">{this.renderList()}</div>

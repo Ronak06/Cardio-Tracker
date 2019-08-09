@@ -12,7 +12,7 @@ export default (state = {}, action) => {
     case FETCH_CARDIOLOGS:
       // create new object with everything in state, then create an object out of it
       // using mapKeys where the key is the id of the individual logs
-      return { ...state, ..._.mapKeys(action.payload, "id") };
+      return action.payload;
     case FETCH_CARDIOLOG:
       // create new object with everything in state and the specific log using the id
       return { ...state, [action.payload.id]: action.payload };
